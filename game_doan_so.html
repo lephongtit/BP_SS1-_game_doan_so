@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+     function linearSearch(arr,str) {
+         for (let i=0;i<arr.length;i++){
+             if (arr[i]===str){
+                 return i;
+             }
+         }
+         return -1
+     };
+     function binarySearch(arr,data) {
+         let lowerBound=0;
+         let upperBound = arr.length - 1;
+         let midPoint = -1;
+         let index = -1;
+         while (lowerBound <= upperBound) {
+             midPoint = Math.round((lowerBound + upperBound) / 2);
+             if (arr[midPoint] === data) {
+                 index = midPoint;
+                 break;
+             } else {
+                 if (arr[midPoint] < data) {
+                     lowerBound = midPoint + 1;
+                 } else {
+                     upperBound = midPoint - 1;
+                 }
+             }
+         }
+         return index;
+     };
+     let intArray = [];
+     for (var i = 0; i < 1000000; ++i) {
+         intArray[i] = Math.floor(Math.random() * 101);
+     }
+         intArray.sort(function (a, b) {
+             return a - b
+         })
+
+
+
+         let a= parseInt(prompt("Nhập giá trị: "));
+
+
+
+     let beforTime = new Date().getMilliseconds();
+     let binary= binarySearch(intArray,a);
+     let afterTime= new Date().getMilliseconds();
+     let timeBinary=afterTime-beforTime;
+     document.write("Vị trí phần tử: "+binary+"--"+"Time: "+timeBinary+"<br/>");
+
+
+     let beforTime1= new Date().getMilliseconds();
+     let linear=linearSearch(intArray,a);
+     let afterTime1= new Date().getMilliseconds();
+     let timeLinear=afterTime1-beforTime1;
+     document.write("Vị trí phần tử: "+linear+"--"+"Time: "+timeLinear);
+</script>
+</body>
+</html>
